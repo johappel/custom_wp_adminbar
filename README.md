@@ -1,6 +1,6 @@
 # Anpassbare Adminbar für Wordpress (Wordpress-Plugin)
 
-Dieses Plugin ermöglicht es Ihnen, die Admin-Leiste von WordPress zu personalisieren, indem Sie benutzerdefinierte Menüpunkte hinzufügen oder vorhandene Menüpunkte entfernen.
+Dieses Plugin ermöglicht es, die Admin-Leiste von WordPress zu personalisieren, indem sich benutzerdefinierte Menüpunkte hinzufügen oder entfernen lassen.
 
 # Beispiel für die Verwendung
 ```php
