@@ -13,13 +13,19 @@ class Custom_AdminBar {
     public $modal_contents = array();
     public $mega_menu_contents = array();
     public $user_role;
-    public $logo_url = 'https://nextcloud.comenius.de/core/img/logo/logo.svg';
+    public $logo_url = '';
 
     public function __construct() {
         add_action('plugins_loaded', array($this, 'init'),9999);
     }
-    public function set_logo($url) {
-        $this->logo_url = $url;
+    public function get_logo_url() {
+
+        $custom_logo_id = get_theme_mod('custom_logo');
+        $logo = wp_get_attachment_image_src($custom_logo_id , 'full');
+        if(has_custom_logo()) {
+            error_log('has custom logo'. esc_url($logo[0]));
+            $this->logo_url = esc_url($logo[0]);
+        }
     }
     public static function get_instance() {
         if (null === self::$instance) {
@@ -191,9 +197,10 @@ class Custom_AdminBar {
     }
 
     private function add_custom_logo() {
+        $logo_url = $this->get_logo_url();
         $args = array(
             'id'    => 'custom-logo',
-            'title' => '<img src="'.$this->logo_url.'" style="height:20px; width:auto;" />',
+            'title' => '<img src="'.$logo_url.'" style="height:20px; width:auto;" />',
             'href'  => home_url(),
         );
         $this->wp_admin_bar->add_node($args);
